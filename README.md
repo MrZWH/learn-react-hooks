@@ -74,7 +74,63 @@ React 最大的贡献并不是作为业务解决方案，而是 React 团队每�
 
 ## 项目搭建
 
+which npx 查找命令路径
+
+npx create-react-app train-ticket
+
+### react-scripts 及其工作原理
+
+### 用 eject 解构编译脚本
+
 ## React新特性一览
+
+- Context
+- ContextType
+- lazy
+- Suspense
+- memo
+  
+### Context
+
+Context 提供了一种方式，能让数据在组件树中传递而不必一级一级手动传递。
+
+一个 Context 实例对象会派生出两个组件：`<Provider>`,`<Consumer>`。  
+
+如何创建 context 实例对象？  
+`createContext(defaultValue?)`
+
+可以有任意多个context，组件嵌套。
+
+### React 中 contextType 的使用
+
+context 会让组件变得不纯粹，因为依赖了全局变量。
+
+省去 Consumer 组件的方式。
+
+```js
+const Context = createContext();
+
+// ...
+
+static contextType = Context;
+
+render() {
+  const context = this.content
+  return ()
+}
+```
+
+### lazy 和 Suspense 的使用
+
+```js
+import {lazy, Suspense} from 'react'
+
+const About = lazy(() => import(/* webpackChunkName: "about"*/))
+```
+
+当 lazy 加载的组件出现错误时 Susupense 并不会捕获错误。
+
+react 中有 ErrorBoundary的概念，利用的是 componentDidCatch 生命周期函数，也可以使用静态方法 `static getDerivedStateFromError` 该函数返回新的 state
 
 ## React颠覆性新特性Hooks
 
