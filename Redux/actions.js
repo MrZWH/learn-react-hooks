@@ -5,10 +5,23 @@ export function createSet(payload) {
 	}
 }
 
-export function createAdd(payload) {
-	return {
-		type: 'add',
-		payload
+let idSeq = Date.now();
+export function createAdd(text) {
+	return (dispatch, state) => {
+		setTimeout(() => {
+			const {todos} = state;
+
+			if(!todos.find(todo => todo.text === text)) {
+				dispatch({
+					type: 'add',
+					payload:{
+						id: ++idSeq,
+						text,
+						complete: false
+					}
+				})
+			}
+		}, 3000)
 	}
 }
 

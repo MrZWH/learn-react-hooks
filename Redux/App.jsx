@@ -8,8 +8,6 @@ import {
 } from './actions.js'
 import reducer from './reducers.js'
 
-let idSeq = Date.now();
-
 function bindActionCreators(actionCreators, dispatch) {
 	const ret = {}
 
@@ -36,11 +34,7 @@ const Control = memo(function Control(props) {
 			return;
 		}
 
-		addTodo({
-			id: ++idSeq,
-			text: newText,
-			complete: false
-		})
+		addTodo(newText)
 
 		inputRef.current.value = '';
 	}
@@ -168,6 +162,11 @@ function TodoList() {
 			todos: setTodos,
 			incrementCount: setIncrementCount
 		};
+
+		if('function' === typeof action) {
+			action(dispatch, state)
+			return
+		}
 
 		const newState = reducer(state, action);
 
