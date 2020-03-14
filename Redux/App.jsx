@@ -9,8 +9,21 @@ import {
 
 let idSeq = Date.now();
 
+function bindActionCreators(actionCreators, dispatch) {
+	const ret = {}
+
+	for(let key in actionCreators) {
+		ret[key] = function (...args) {
+			dispatch(actionCreators[key](...args))
+		}
+	}
+
+	return ret
+
+}
+
 const Control = memo(function Control(props) {
-	const {dispatch} = props;
+	const {addTodo} = props;
 	const inputRef = useRef()
 
 	const onSubmit = (e) => {
@@ -22,11 +35,11 @@ const Control = memo(function Control(props) {
 			return;
 		}
 
-		dispatch(createAdd({
+		addTodo({
 			id: ++idSeq,
 			text: newText,
 			complete: false
-		}))
+		})
 
 		inputRef.current.value = '';
 	}
@@ -49,14 +62,14 @@ const Control = memo(function Control(props) {
 const TodoItem = memo(function TodoItem(props) {
 	const {todo: {
 		id, text, complete
-	}, dispatch} = props
+	}, removeTodo, toggleTodo} = props
 
 	const onChange = () => {
-		dispatch(createToggle(id))
+		toggleTodo(id)
 	}
 
 	const onRemove = () => {
-		dispatch(createRemove(id))
+		removeTodo(id)
 	}
 
 	return (
@@ -73,7 +86,7 @@ const TodoItem = memo(function TodoItem(props) {
 });
 
 const Todos = memo(function Todos(props) {
-	const {todos, dispatch} = props;
+	const {todos, removeTodo, toggleTodo} = props;
 
 	return (
 		<ul>
@@ -83,7 +96,8 @@ const Todos = memo(function Todos(props) {
 						<TodoItem
 							key={todo.id}
 							todo={todo}
-							dispatch={dispatch}
+							removeTodo={removeTodo}
+							toggleTodo={toggleTodo}
 						/>
 					)
 				})
@@ -139,9 +153,20 @@ function TodoList() {
 	}, [todos])
 
 	return <div className="todo-list">
-		<Control dispatch={dispatch} />
+		<Control
+			{
+				...bindActionCreators({
+					addTodo: createAdd
+				}, dispatch)
+			}
+		/>
 		<Todos
-		  dispatch={dispatch}
+		  {
+				...bindActionCreators({
+					removeTodo: createRemove,
+					toggleTodo: createToggle
+				}, dispatch)
+			}
 		  todos={todos}
 		 />
 	</div>

@@ -17,3 +17,15 @@ Redux 和 React 以及他们的周边工具往往是一整套解决方案，用�
 - 纯函数修改数据，能够精确重现对数据的修改行为
 
 ## dispatch 与 Action
+
+推导 dispatch
+
+推导 action
+
+推导 actionCreator
+
+推导 bindActionCreators
+
+到这一步 用 action 来表达对数据的改动更生动清晰 之外也没有见特别的优势。
+
+## 用 reducer 拆解数据更新
