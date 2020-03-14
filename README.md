@@ -153,10 +153,21 @@ const Foo = memo(function Foo(props) {
 - Class 组件有哪些不足？
 - Hooks 有什么优势？
 - 使用 useState 有哪些需要注意的点？
+- 使用 useEffect 使用，第二个参数的用处？
+- 使用 Context Hooks, useContext。
+- 使用 Memo/Callback Hooks
+- 使用 Ref Hooks
+- 自定义 Hooks
+- Hooks 使用法则
+- Hooks 常见问题
 
 [详细内容](./React颠覆性新特性Hooks/README.md)
 
 ## React新特性之Redux
+
+顺便完成了一个 todolist 程序推导 Redux api；
+
+[详细内容](./React颠覆性新特性Hooks/README.md)
 
 ## 渐进式Web App
 
