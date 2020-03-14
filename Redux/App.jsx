@@ -6,6 +6,7 @@ import {
 	createRemove,
 	createToggle
 } from './actions.js'
+import reducer from './reducers.js'
 
 let idSeq = Date.now();
 
@@ -111,6 +112,7 @@ const LS_KEY = '_$-todos_';
 
 function TodoList() {
 	const [todos, setTodos] = useState([])
+	const [incrementCount, setIncrementCount] = useState([0])
 
 	const addTodo = useCallback((todo) => {
 		setTodos((todos) => [...todos, todo])
@@ -122,26 +124,58 @@ function TodoList() {
 
 	const toggleTodo = useCallback((id) => {
 		setTodos((todos) => todos.map(todo => todo.id === id ? {...todo, complete: !todo.complete} : todo))
-	}, [])
+	}, [])；
+
+	// function reducer(state, action) {
+	// 	const {type, payload} = action;
+	// 	const {todos, incrementCount} = state;
+
+	// 	switch(type) {
+	// 		case 'set':
+	// 			return {
+	// 				...state,
+	// 				incrementCount: incrementCount + 1,
+	// 				todos: payload
+	// 			}
+	// 		case 'add':
+	// 			return {
+	// 				...state,
+	// 				incrementCount: incrementCount + 1,
+	// 				todos: [...todos, payload]
+	// 			}
+	// 		case 'remove':
+	// 			return {
+	// 				...state,
+	// 				todos: todos.filter((todo) => todo.id !== payload)
+	// 			}
+	// 		case 'toggle':
+	// 			return {
+	// 				...state,
+	// 				todos: todos.map(todo => todo.id === payload ? {...todo, complete: !todo.complete} : todo)
+	// 			}
+	// 	}
+
+	// 	return state
+	// }
 
 	const dispatch = useCallback((action) => {
-		const {type, payload} = action;
-		switch(type) {
-			case 'set':
-				setTodos(payload)
-				break;
-			case 'add':
-				setTodos((todos) => [...todos, payload])
-				break;
-			case 'remove':
-				setTodos((todos) => todos.filter((todo) => todo.id !== payload))
-				break;
-			case 'toggle':
-				setTodos((todos) => todos.map(todo => todo.id === payload ? {...todo, complete: !todo.complete} : todo))
-			  break;
-			default:
+		const state = {
+			todos,
+			incrementCount
 		}
-	}, []);
+
+		const setters = {
+			todos: setTodos,
+			incrementCount: setIncrementCount
+		};
+
+		const newState = reducer(state, action);
+
+		for(let key in newState) {
+			setters[key](newState[key])
+		}
+
+	}, [todos,incrementCount]);
 
 	useEffect(() => {
 		const todos = JSON.parse(localStorage.getItem(LS_KEY) || '[]')
