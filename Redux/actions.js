@@ -7,9 +7,9 @@ export function createSet(payload) {
 
 let idSeq = Date.now();
 export function createAdd(text) {
-	return (dispatch, state) => {
+	return (dispatch, getState) => {
 		setTimeout(() => {
-			const {todos} = state;
+			const {todos} = getState();
 
 			if(!todos.find(todo => todo.text === text)) {
 				dispatch({
