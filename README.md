@@ -132,7 +132,29 @@ const About = lazy(() => import(/* webpackChunkName: "about"*/))
 
 react 中有 ErrorBoundary的概念，利用的是 componentDidCatch 生命周期函数，也可以使用静态方法 `static getDerivedStateFromError` 该函数返回新的 state
 
+### memo 的使用
+
+解决 react 在运行时的效率问题。  
+
+react 就是将数据转换成视图的桥梁，视图应该始终与对应的数据保持同步
+
+```jsx
+import {memo} from 'react'
+
+const Foo = memo(function Foo(props) {
+  return <div>{props}</div>
+})
+```
+
+**memo 与 Purecomponent 的属性对比的相等是怎么判断的，是“==”还是“===”，当传入 null 和 undefined 判断是否相等呢？**
+
 ## React颠覆性新特性Hooks
+
+- Class 组件有哪些不足？
+- Hooks 有什么优势？
+- 使用 useState 有哪些需要注意的点？
+
+[详细内容](./React颠覆性新特性Hooks/README.md)
 
 ## React新特性之Redux
 
