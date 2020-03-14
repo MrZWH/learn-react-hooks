@@ -1,5 +1,11 @@
 import React, {meomo,useEffect, useState, useCallback} from 'react'
-import './App.css'
+import './App.css';
+import {
+	createSet,
+	createAdd,
+	createRemove,
+	createToggle
+} from './actions.js'
 
 let idSeq = Date.now();
 
@@ -16,14 +22,11 @@ const Control = memo(function Control(props) {
 			return;
 		}
 
-		dispatch({
-			type: 'add',
-			payload:{
-				id: ++idSeq,
-				text: newText,
-				complete: false
-			}
-		})
+		dispatch(createAdd({
+			id: ++idSeq,
+			text: newText,
+			complete: false
+		}))
 
 		inputRef.current.value = '';
 	}
@@ -49,11 +52,11 @@ const TodoItem = memo(function TodoItem(props) {
 	}, dispatch} = props
 
 	const onChange = () => {
-		dispatch({type: 'toggle', payload: id})
+		dispatch(createToggle(id))
 	}
 
 	const onRemove = () => {
-		dispatch({type: 'remove', payload: id})
+		dispatch(createRemove(id))
 	}
 
 	return (
@@ -128,10 +131,7 @@ function TodoList() {
 
 	useEffect(() => {
 		const todos = JSON.parse(localStorage.getItem(LS_KEY) || '[]')
-		dispatch({
-			type: 'set',
-			payload: todos
-		})
+		dispatch(createSet(todos))
 	},[])
 
 	useEffect(() => {
