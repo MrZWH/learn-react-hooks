@@ -167,9 +167,17 @@ const Foo = memo(function Foo(props) {
 
 顺便完成了一个 todolist 程序推导 Redux api；
 
-[详细内容](./React颠覆性新特性Hooks/README.md)
+[详细内容](./Redux/README.md)
 
-## 渐进式Web App
+## 渐进式Web App PWA
+
+- Service Worker
+- Promise
+- fetch
+- cache API
+- Notification API
+
+[详细内容](./PWA/README.md)
 
 ## 火车票业务架构
 

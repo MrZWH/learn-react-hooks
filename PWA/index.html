@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Learn PWA</title>
+</head>
+<body>
+	<script>
+		// service worker 只是一个单例，不能用构造器创建 service worker
+		navigator.serviceWorker.register('./sw.js', {
+			scope: '/'
+		}).then(registration => {
+			console.log(registration)
+		}, error => {
+			console.error(error)
+		})
+	</script>
+</body>
+</html>
