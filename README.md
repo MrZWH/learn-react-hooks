@@ -181,6 +181,20 @@ const Foo = memo(function Foo(props) {
 
 ## 火车票业务架构
 
+<https://touch.train.qunar.com>
+
+页面需求
+
+交互设计
+
+在 src 目录下删除除了 service worker 的所有文件.
+
+```shell
+ls | grep -v serviceWorker.js| xarges rm
+```
+
+安装 normalize.css
+
 ## 火车票首页
 
 ## 搜索结果页
