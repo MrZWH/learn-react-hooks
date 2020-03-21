@@ -199,6 +199,12 @@ ls | grep -v serviceWorker.js| xarges rm
 
 安装 express
 
+## 数据结构与模块设计
+
+- React 视觉组件拆分
+- redux store 状态涉及
+- redux action/reducer 设计
+
 ## 火车票首页
 
 ## 搜索结果页
