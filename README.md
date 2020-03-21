@@ -221,7 +221,8 @@ classnames
 className={classnames('city-selector', {hidden: !show})}
 ```
 
-`&#xf063;` 是个×的样子
+安装:  
+dayjs 处理时间.
 
 ## 搜索结果页
 

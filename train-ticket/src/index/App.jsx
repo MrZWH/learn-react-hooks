@@ -10,6 +10,7 @@ import Journey from './Journey.jsx';
 import Submit from './Submit.jsx';
 
 import CitySelector from '../common/CitySelector.jsx';
+import DateSelector from '../common/DateSelector.jsx';
 
 import {
   exchangeFromTo,
@@ -17,6 +18,8 @@ import {
   hideCitySelector,
   fetchCityData,
   setSelectedCity,
+  showDateSelector,
+  hideDateSelector,
 } from './actions';
 
 function App(props) {
@@ -25,8 +28,10 @@ function App(props) {
     to,
     dispatch,
     isCitySelectorVisible,
+    isDateSelectorVisible,
     isLoadingCityData,
     cityData,
+    departDate,
   } = props;
 
   const onBack = useCallback(() => {
@@ -52,6 +57,18 @@ function App(props) {
       fetchCityData,
       onSelect: setSelectedCity,
     }, dispatch)
+  }, []);
+
+  const departDateCbs = useMemo(() => {
+    return bindActionCreators({
+      onClick: showDateSelector,
+    }, dispatch)
+  }, []);
+
+  const dateSelectorCbs = useMemo(() => {
+    return bindActionCreators({
+      onBack: hideDateSelector,
+    }, dispatch)
   }, [])
 
   return (
@@ -63,7 +80,10 @@ function App(props) {
         <Journey from={from} to={to}
           {...cbs}
         />
-        <DepartDate />
+        <DepartDate
+          time={departDate}
+          {...departDateCbs}
+        />
         <HighSpeed />
         <Submit />
       </from>
@@ -72,6 +92,10 @@ function App(props) {
         isLoading={isLoadingCityData}
         cityData={cityData}
         {...citySelectionCbs}
+      />
+      <DateSelector
+        show={isDateSelectorVisible}
+        {...dateSelectorCbs}
       />
     </div>
   );
