@@ -5,3 +5,8 @@
   top: 0;
   z-index: 2;
 }
+
+.from {
+	padding: 5px 15px 0;
+	background: #fff;
+}

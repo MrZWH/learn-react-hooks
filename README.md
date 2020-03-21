@@ -207,6 +207,22 @@ ls | grep -v serviceWorker.js| xarges rm
 
 ## 火车票首页
 
+类名判断语法:  
+
+```jsx
+className={['city-selector', (!show) && 'hidden'].filter(Boolean).join(' ')
+```
+
+安装:  
+classnames
+
+简写成:  
+```jsx
+className={classnames('city-selector', {hidden: !show})}
+```
+
+`&#xf063;` 是个×的样子
+
 ## 搜索结果页
 
 ## 座次选择页
