@@ -195,6 +195,10 @@ ls | grep -v serviceWorker.js| xarges rm
 
 安装 normalize.css
 
+## 搭建 Mock Server
+
+安装 express
+
 ## 火车票首页
 
 ## 搜索结果页
