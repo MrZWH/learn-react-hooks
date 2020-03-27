@@ -216,7 +216,8 @@ className={['city-selector', (!show) && 'hidden'].filter(Boolean).join(' ')
 安装:  
 classnames
 
-简写成:  
+简写成:
+  
 ```jsx
 className={classnames('city-selector', {hidden: !show})}
 ```
