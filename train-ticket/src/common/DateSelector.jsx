@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-import {h0} from '../common/fp'
+import { h0 } from '../common/fp'
 import Header from './Header.jsx'
 
 import './DateSelector.css'
@@ -13,29 +13,29 @@ function Day(props) {
 		onSelect,
 	} = props;
 
-	if(!day) {
+	if (!day) {
 		return <td className="null"></td>
 	}
 
-	const classes =[]
+	const classes = []
 	const now = h0()
 
-	if(day<now) {
+	if (day < now) {
 		classes.push('disabled')
 	}
 
-	if([6,0].includes(new Date(day).getDay())) {
+	if ([6, 0].includes(new Date(day).getDay())) {
 		classes.push('weekend')
 	}
 
 	const dateString = now === day ? '今天' : new Date(day).getDate();
 
-	return(
+	return (
 		<td
 			className={classnames(classes)}
 			onClick={() => onSelect(day)}
 		>
-		{dateString}
+			{dateString}
 		</td>
 	)
 }
@@ -82,7 +82,7 @@ function Month(props) {
 	let days = []
 
 	while (currentDay.getMonth() === startDay.getMonth()) {
-		days.push(currentDay.getTime)
+		days.push(currentDay.getTime())
 		currentDay.setDate(currentDay.getDate() + 1)
 	}
 

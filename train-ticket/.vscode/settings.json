@@ -1,0 +1,7 @@
+{
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact"
+  ],
+}

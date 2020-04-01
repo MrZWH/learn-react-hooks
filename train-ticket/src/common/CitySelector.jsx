@@ -1,11 +1,11 @@
-import React, {useState,useCallback, useMemo, useEffect, memo} from 'react';
+import React, { useState, useCallback, useMemo, useEffect, memo } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types'
 import './CitySelector.css'
 
 const CityItem = memo(function CityItem(props) {
 	const {
-		name, 
+		name,
 		onSelect,
 	} = props
 
@@ -67,7 +67,7 @@ const AlphaIndex = memo(function AlphaIndex(props) {
 	)
 })
 
-AlphaIndex.propTypes= {
+AlphaIndex.propTypes = {
 	alpha: PropTypes.string.isRequired,
 	onClick: PropTypes.func.isRequired,
 }
@@ -128,7 +128,7 @@ const SuggestItem = memo(function SuggestItem(props) {
 		onClick,
 	} = props;
 
-	return(
+	return (
 		<li className="city-suggest-li" onClick={() => onClick(name)}>
 			{name}
 		</li>
@@ -136,7 +136,7 @@ const SuggestItem = memo(function SuggestItem(props) {
 
 })
 
-SuggestItem.propTypes= {
+SuggestItem.propTypes = {
 	name: PropTypes.string.isRequired,
 	onClick: PropTypes.func.isRequired,
 }
@@ -158,15 +158,15 @@ const Suggest = memo(function Suggest(props) {
 					searchKey: sKey,
 				} = data
 
-				if(sKey === searchKey) {
+				if (sKey === searchKey) {
 					setResult(result)
 				}
 			})
 	}, [searchKey]);
 
 	const fallBackResult = useMemo(() => {
-		if(!result.length) {
-			return [{display: searchKey}]
+		if (!result.length) {
+			return [{ display: searchKey }]
 		}
 
 		return result
@@ -190,7 +190,7 @@ const Suggest = memo(function Suggest(props) {
 
 })
 
-Suggest.propTypes ={
+Suggest.propTypes = {
 	searchKey: PropTypes.string.isRequired,
 	onSelect: PropTypes.func.isRequired,
 }
@@ -217,15 +217,15 @@ const CitySelector = memo(function CitySelector(props) {
 	}, [show, cityData, isLoading])
 
 	const toAlpha = useCallback(alpha => {
-			document.querySelector(`[data-cate='${alpha}']`).scrollIntoView();
+		document.querySelector(`[data-cate='${alpha}']`).scrollIntoView();
 	}, [])
 
 	const outputCitySections = () => {
-		if(isLoading) {
+		if (isLoading) {
 			return <div>Loading</div>
 		}
 
-		if(cityData) {
+		if (cityData) {
 			return (
 				<CityList
 					sections={cityData.cityList}
@@ -239,17 +239,17 @@ const CitySelector = memo(function CitySelector(props) {
 	}
 
 	return (
-		<div className={classnames('city-selector', {hidden: !show})}>
+		<div className={classnames('city-selector', { hidden: !show })}>
 			<div className="city-search" onClick={() => onBack()}>
 				<div className="search-back">
 					<svg width="42" height="42">
-	          <polyline
-	            points="25,13 16,21 25,29"
-	            stroke="#fff"
-	            strokeWidth="2"
-	            fill="none"
-	          />
-	        </svg>
+						<polyline
+							points="25,13 16,21 25,29"
+							stroke="#fff"
+							strokeWidth="2"
+							fill="none"
+						/>
+					</svg>
 				</div>
 				<div className="search-input-wrapper">
 					<input

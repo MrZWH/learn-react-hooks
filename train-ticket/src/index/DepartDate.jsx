@@ -1,10 +1,10 @@
-import React, {useMemo} from 'react'
+import React, { useMemo } from 'react'
 import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 import './DepartDate.css';
-import {h0} from '../common/fp.js'
+import { h0 } from '../common/fp.js'
 
-export default function DepartDate() {
+export default function DepartDate(props) {
 	const {
 		time,
 		onClick,
@@ -20,22 +20,22 @@ export default function DepartDate() {
 	const isToday = h0OfDepart === h0();
 
 	const weekString = '周'
-	+ ['日', '一', '二', '三', '四', '五', '六'][departDate.getDay()]
-	+ (isToday ? '(今天)' : '');
+		+ ['日', '一', '二', '三', '四', '五', '六'][departDate.getDay()]
+		+ (isToday ? '(今天)' : '');
 
-  return (
-    <div className="depart-date" onClick={onClick}>
-    	<input
-    		type="hidden"
-    		name="date"
-    		value={departDateString}
-    	/>
-      {departDateString} <span className="depart-week"></span>
-    </div>
-  )
+	return (
+		<div className="depart-date" onClick={onClick}>
+			<input
+				type="hidden"
+				name="date"
+				value={departDateString}
+			/>
+			{departDateString} <span className="depart-week">{weekString}</span>
+		</div>
+	)
 }
 
-DepartDate.porpTypes ={
+DepartDate.porpTypes = {
 	time: PropTypes.number.isRequired,
 	onClick: PropTypes.func.isRequired,
 }

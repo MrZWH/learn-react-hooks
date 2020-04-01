@@ -1,8 +1,8 @@
 import React, { useCallback, useMemo } from 'react';
-import {bindActionCreators} from 'redux';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import './App.css';
-
+import PropTypes from 'prop-types';
 import Header from '../common/Header.jsx';
 import DepartDate from './DepartDate.jsx';
 import HighSpeed from './HighSpeed.jsx';
@@ -12,7 +12,7 @@ import Submit from './Submit.jsx';
 import CitySelector from '../common/CitySelector.jsx';
 import DateSelector from '../common/DateSelector.jsx';
 
-import {h0} from '../common/fp'
+import { h0 } from '../common/fp'
 
 import {
   exchangeFromTo,
@@ -83,11 +83,11 @@ function App(props) {
   }, [])
 
   const onSelectDate = useCallback((day) => {
-    if(!day) {
+    if (!day) {
       return;
     }
 
-    if(day<h0()) {
+    if (day < h0()) {
       return;
     }
 
@@ -100,7 +100,7 @@ function App(props) {
       <div className="header-wrapper">
         <Header title="火车票" onBack={onBack} />
       </div>
-      <from action="./query.html" className="form">
+      <form action="./query.html" className="form">
         <Journey from={from} to={to}
           {...cbs}
         />
@@ -113,7 +113,7 @@ function App(props) {
           {...HighSpeedCbs}
         />
         <Submit />
-      </from>
+      </form>
       <CitySelector
         show={isCitySelectorVisible}
         isLoading={isLoadingCityData}
@@ -134,6 +134,6 @@ export default connect(
     return state
   },
   function mapDispatchtoProps(dispatch) {
-    return {dispatch}
+    return { dispatch }
   }
 )(App);

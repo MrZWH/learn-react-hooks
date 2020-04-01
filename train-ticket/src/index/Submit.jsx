@@ -1,7 +1,7 @@
-import React, {memo} from 'react';
+import React, { memo } from 'react';
 import './Submit.css';
 
-export default memo(function Submit(props) {
+export default memo(function Submit() {
 	return (
 		<div className="submit">
 			<button type="submit" className="submit-button"> 搜索 </button>
