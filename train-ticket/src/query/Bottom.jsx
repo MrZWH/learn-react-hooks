@@ -1,6 +1,5 @@
 import React, { memo,
 	useState,
-	useCallback,
 	 useMemo,
 	 useReducer,
  } from 'react';
@@ -12,9 +11,10 @@ import './Bottom.css'
 
 function checkedReducer(state, action) {
 	const {type, payload} = action;
+	let newState;
 	switch(type) {
 		case 'toggle':
-			const newState = {...state};
+			newState = {...state};
 			if(payload in newState) {
 				delete newState[payload]
 			} else {

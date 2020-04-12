@@ -76,12 +76,28 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "lint": "eslint --fix --ext .js --ext .jsx src"
+    "format": "prettier src/**/*.{js,jsx,css,md} --write && eslint src/**/*.{jsx, js} --fix"
   },
   "eslintConfig": {
     "extends": [
       "eslint:recommended",
       "react-app"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js, jsx}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{css,md}": [
+      "prettier --write",
+      "git add"
     ]
   },
   "browserslist": {

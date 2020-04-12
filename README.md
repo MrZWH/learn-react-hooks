@@ -236,3 +236,12 @@ dayjs 处理时间.
 ## 订单填写页
 
 ## 工程优化
+
+### 代码规范格式化
+
+安装 husky 自动配置 git hooks.
+安装 lint-staged,被 husky 调用专门针对这一次被改动的文件进行相应操作.
+在 package.json 编辑相关命令. 
+
+eslint 执行代码格式化能力比较弱, 推荐 prettier.
+安装之后在npm script 做编辑.

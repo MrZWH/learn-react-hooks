@@ -111,12 +111,14 @@ export default {
     },
     checkedTicketTypes(state = {}, action) {
         const { type, payload } = action;
+        let highSpeed;
+        let newCheckedTrainTypes;
         switch (type) {
             case ACTION_SET_CHECKED_TICKET_TYPES:
                 return payload;
             case ACTION_SET_HIGH_SPEED:
-                const highSpeed = payload;
-                const newCheckedTrainTypes = {...state}
+                highSpeed = payload;
+                newCheckedTrainTypes = {...state}
 
                 if(highSpeed) {
                     newCheckedTrainTypes[1] = true
