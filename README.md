@@ -245,3 +245,7 @@ dayjs 处理时间.
 
 eslint 执行代码格式化能力比较弱, 推荐 prettier.
 安装之后在npm script 做编辑.
+
+### 性能与部署
+
+分析各个 npm 代码体积: 安装 webpack-bundle-analyzer
